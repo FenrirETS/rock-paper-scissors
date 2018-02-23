@@ -6,57 +6,76 @@
 </head>
 <body>
   <script>
-    function game() {
-      for (i = 0; i < 5; i++) {
-        let playerSelection = prompt("Rock paper or scissors?");
-        let computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection));
-      }
+  let playerPoints = 0;
+  let computerPoints = 0;
+
+  function game() {
+    for (i = 0; i < 5; i++) {
+      let playerSelection = prompt("Rock paper or scissors?");
+      let computerSelection = computerPlay();
+      console.log(playRound(playerSelection, computerSelection));
     }
 
-    let rps = ["Rock", "Paper", "Scissors"];
-
-    function computerPlay() {
-      return rps[Math.floor(Math.random() * rps.length)];
+    if (playerPoints > computerPoints) {
+      console.log("Final score: " + playerPoints + " to " + computerPoints + ". You win!");
     }
+    else if (playerPoints < computerPoints) {
+      console.log("Final score: " + playerPoints + " to " + computerPoints + ". You lose!");
+    }
+    else if (playerPoints = computerPoints) {
+      console.log("Final score: " + playerPoints + " to " + computerPoints + ". Draw!");
+    }
+  }
 
-    function playRound(playerSelection, computerSelection) {
-      if (playerSelection == "rock") {
-        if (computerSelection == "Rock") {
-          return "You rolled rock. Computer rolled rock. Tie!";
-        }
-        else if (computerSelection == "Paper") {
-          return "You rolled rock. Computer rolled paper. Paper beats rock. You lose!";
-        }
-        else if (computerSelection == "Scissors") {
-          return "You rolled rock. Computer rolled scissors. Rock beats scissors. You win!";
-        }
+  let rps = ["Rock", "Paper", "Scissors"];
+
+  function computerPlay() {
+    return rps[Math.floor(Math.random() * rps.length)];
+  }
+
+  function playRound(playerSelection, computerSelection) {
+    if (playerSelection == "rock") {
+      if (computerSelection == "Rock") {
+        return "You rolled rock. Computer rolled rock. Tie! You: " + playerPoints + " point(s). Computer: " + computerPoints + " point(s).";
       }
-      if (playerSelection == "paper") {
-        if (computerSelection == "Rock") {
-          return "You rolled paper. Computer rolled rock. Paper beats rock. You win!";
-        }
-        else if (computerSelection == "Paper") {
-          return "You rolled paper. Computer rolled paper. Tie!";
-        }
-        else if (computerSelection == "Scissors") {
-          return "You rolled paper. Computer rolled scissors. Scissors beats paper. You lose!";
-        }
+      else if (computerSelection == "Paper") {
+        computerPoints += 1;
+        return "You rolled rock. Computer rolled paper. Paper beats rock. Computer gains a point! You: " + playerPoints + " point(s). Computer: " + computerPoints + " point(s).";
       }
-      if (playerSelection == "scissors") {
-        if (computerSelection == "Rock") {
-          return "You rolled scissors. Computer rolled rock. Rock beats scissors. You lose!";
-        }
-        else if (computerSelection == "Paper") {
-          return "You rolled scissors. Computer rolled paper. Scissors beats paper. You win!";
-        }
-        else if (computerSelection == "Scissors") {
-          return "You rolled scissors. Computer rolled scissors. Tie!";
-        }
+      else if (computerSelection == "Scissors") {
+        playerPoints += 1;
+        return "You rolled rock. Computer rolled scissors. Rock beats scissors. You gain a point! You: " + playerPoints + " point(s). Computer: " + computerPoints + " point(s).";
       }
     }
+    if (playerSelection == "paper") {
+      if (computerSelection == "Rock") {
+        playerPoints += 1;
+        return "You rolled paper. Computer rolled rock. Paper beats rock. You gain a point! You: " + playerPoints + " point(s). Computer: " + computerPoints + " point(s).";
+      }
+      else if (computerSelection == "Paper") {
+        return "You rolled paper. Computer rolled paper. Tie! You: " + playerPoints + " point(s). Computer: " + computerPoints + " point(s).";
+      }
+      else if (computerSelection == "Scissors") {
+        computerPoints += 1;
+        return "You rolled paper. Computer rolled scissors. Scissors beats paper. You lose! You: " + playerPoints + " point(s). Computer: " + computerPoints + " point(s).";
+      }
+    }
+    if (playerSelection == "scissors") {
+      if (computerSelection == "Rock") {
+        computerPoints =+ 1;
+        return "You rolled scissors. Computer rolled rock. Rock beats scissors. You lose! You: " + playerPoints + " point(s). Computer: " + computerPoints + " point(s).";
+      }
+      else if (computerSelection == "Paper") {
+        playerPoints += 1;
+        return "You rolled scissors. Computer rolled paper. Scissors beats paper. You win! You: " + playerPoints + " point(s). Computer: " + computerPoints + " point(s).";
+      }
+      else if (computerSelection == "Scissors") {
+        return "You rolled scissors. Computer rolled scissors. Tie! You: " + playerPoints + " point(s). Computer: " + computerPoints + " point(s).";
+      }
+    }
+  }
 
-    game();
+  game();
   </script>
 </body>
 </html>
